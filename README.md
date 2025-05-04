@@ -1,84 +1,73 @@
-# Quizy Dude Bot — @quizydudebot
+# Quizy Dude — Telegram Quiz Bot  
+[![Telegram](https://img.shields.io/badge/Launch%20Bot-@quizydudebot-0088cc?style=for-the-badge&logo=telegram)](https://t.me/quizydudebot)
 
-Welcome to **Quizy Dude**, your ultimate destination for spicy, silly, and smart quizzes on Telegram!
-
-Get ready to:
-- **Flirt a little**
-- **Laugh a lot**
-- **Climb the leaderboard like a pro**
-
-From outrageous questions to study-time challenges — there’s something for everyone.
+Welcome to **Quizy Dude**, a playful yet competitive quiz bot on Telegram. Designed to entertain, challenge, and engage users through a wide variety of quiz topics — from flirty to funny, spicy to smart.
 
 ---
 
-## 🚀 What Can This Bot Do?
+## ✨ What This Bot Can Do
 
-**Quizy Dude** turns your boring moments into pure fun. Whether you're chilling solo or hanging out with friends, this bot spices things up with:
-
-- Steamy and flirty quizzes  
-- Wild and crazy challenges  
-- Laugh-out-loud moments  
-- Smart trivia to test your brain  
-- Competitive leaderboard to flex your knowledge  
-
-> **Have fun, flirt a little, and rule the game!**
+- Deliver **fun, spicy, and random quizzes**
+- Track users on a **dynamic leaderboard**
+- Provide a smooth and user-friendly experience
+- Offer multiple categories suited to different moods
 
 ---
 
-## 🎯 Categories You Can Explore
+## 🎯 Quiz Categories
 
-Try out these quiz types with a simple tap:
-
-- 🔥 `/xquiz` — Steamy Sex Quiz  
-- ❤️ `/hquiz` — Horny Quiz  
-- 💋 `/fquiz` — Flirty Quiz  
-- 😂 `/lolquiz` — Funny Quiz  
-- 🤪 `/cquiz` — Crazy Quiz  
-- 📚 `/squiz` — Study Quiz  
-- 🎲 `/aquiz` — Random Mix  
+| Command    | Category               | Description                |
+|------------|------------------------|----------------------------|
+| `/xquiz`   | Steamy Quiz            | Bold and daring questions  |
+| `/hquiz`   | Horny Quiz             | Naughty and cheeky fun     |
+| `/fquiz`   | Flirty Quiz            | Light and teasing quizzes  |
+| `/lolquiz` | Funny Quiz             | Laugh-out-loud questions   |
+| `/cquiz`   | Crazy Quiz             | Wild and unpredictable     |
+| `/squiz`   | Study Quiz             | Learn something new        |
+| `/aquiz`   | Random Mix             | A bit of everything         |
 
 ---
 
-## 🛠 Tech Stack
+## 🚀 Getting Started
+
+1. Launch the bot: [@quizydudebot](https://t.me/quizydudebot)  
+2. Use `/start` to begin  
+3. Select your quiz category  
+4. Play, compete, and climb the leaderboard
+
+---
+
+## ⚙️ Tech Stack
 
 - **Language:** Python  
 - **Framework:** [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot)  
+- **Database:** SQLite3  
 - **Hosting:** Railway  
 
 ---
 
-## ▶️ How to Use
+## 📦 Deploy Your Own Instance
 
-1. Start the bot: [@quizydudebot](https://t.me/quizydudebot)  
-2. Click or type `/start`  
-3. Choose your quiz category  
-4. Answer, laugh, and climb the leaderboard!
+You can deploy your own version of Quizy Dude.
 
----
+1. Clone the repository  
+2. Set your bot token in the environment  
+3. Deploy using Railway or any Python-supporting platform
 
-## ⚙️ Deployment Guide
-
-Want to host your own version?
-
-1. Clone the repo
-2. Set your bot token and other environment variables
-3. Deploy easily on Railway or any preferred platform
-
-> Note: You must have basic knowledge of Python & Telegram bots to run your own instance.
+> For deployment support, feel free to open an issue or pull request.
 
 ---
 
-## 👑 Author
+## 👤 Author
 
-Made with fun and passion by **Asadul Islam (Asad)**
-
----
-
-## 📜 License
-
-This project is for public fun. No license needed — just don’t copy-paste and claim it's yours.
+Developed by **Asadul Islam**  
+Telegram: [@quizydudebot](https://t.me/quizydudebot)
 
 ---
 
-**Ready to play? [Start now with Quizy Dude!](https://t.me/quizydudebot)**  
-🔥 Laugh. Flirt. Compete. Rule. 🏆
+## 📄 License
+
+This project is open-source under the **MIT License**.  
+Feel free to use, modify, and share with proper attribution.
+
+---
