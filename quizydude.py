@@ -678,14 +678,23 @@ for quiz_type in quizzes:
     reset_shuffled(quiz_type)
 
 # --- USER MANAGEMENT ---
-def ensure_user(user_id, username):
+def ensure_user(connection, user_id, username):
     try:
+        # Create a cursor from the connection
+        cursor = connection.cursor()
+
         cursor.execute("SELECT * FROM users WHERE user_id=%s", (user_id,))
         user = cursor.fetchone()
         if not user:
             cursor.execute("INSERT INTO users (user_id, username) VALUES (%s, %s)", (user_id, username))
+
+        # Commit the transaction
         connection.commit()
+        
+        # Close the cursor after the operation
+        cursor.close()
     except Exception as e:
+        # Rollback the transaction in case of an error
         connection.rollback()
         print("Database error in ensure_user:", e)
 
