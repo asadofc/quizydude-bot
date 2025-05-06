@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS users (
 conn.commit()
 
 # --- QUIZ QUESTIONS SETUP ---
+
 quizzes = {
     'xquiz': [
     ("What's the most sensitive erogenous zone? 🔥", ["Neck", "Fingers", "Toes", "Elbows"], 0),
@@ -705,9 +706,9 @@ async def ensure_user(user_id, username):
 
 def update_score(user_id: int, correct: bool):
     if correct:
-        cursor.execute("UPDATE users SET wins = wins + 1 WHERE user_id=?", (user_id,))
+        cursor.execute("UPDATE users SET wins = wins + 1 WHERE user_id=%s", (user_id,))
     else:
-        cursor.execute("UPDATE users SET losses = losses + 1 WHERE user_id=?", (user_id,))
+        cursor.execute("UPDATE users SET losses = losses + 1 WHERE user_id=%s", (user_id,))
     conn.commit()
 
 # --- BOT HANDLERS ---
@@ -778,6 +779,10 @@ async def send_quiz(update: Update, context: ContextTypes.DEFAULT_TYPE, quiz_typ
     if not shuffled_quizzes.get(quiz_type):
         reset_shuffled(quiz_type)
 
+    if not shuffled_quizzes[quiz_type]:
+        await update.message.reply_text("No more questions in this category!")
+        return
+
     question = shuffled_quizzes[quiz_type].pop()
     q_text, options, correct_id = question
 
@@ -831,7 +836,7 @@ async def receive_poll_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
     poll_id = answer.poll_id
     correct_option_id = context.bot_data.get(poll_id, {}).get("correct_option_id")
 
-    ensure_user(user_id, answer.user.username or answer.user.first_name)
+    await ensure_user(user_id, answer.user.username or answer.user.first_name)
     
     if selected == correct_option_id:
         update_score(user_id, correct=True)
@@ -852,7 +857,7 @@ async def show_statistics(update: Update, context: ContextTypes.DEFAULT_TYPE):
     for i, (uid, username, wins, losses) in enumerate(top_users, start=1):
         try:
             user = await context.bot.get_chat(uid)
-            mention = f"{user.mention_html()}"  # Explicitly using user.mention_html()
+            mention = f"{user.mention_html()}"
         except Exception:
             mention = f"<i>{username or 'Unknown'}</i>"
 
