@@ -678,7 +678,7 @@ for quiz_type in quizzes:
     reset_shuffled(quiz_type)
 
 # --- USER MANAGEMENT ---
-def ensure_user(connection, user_id, username):
+def ensure_user(connection, user.id, user.username or user.first_name):
     try:
         cursor.execute("SELECT * FROM users WHERE user_id=%s", (user_id,))
         user = cursor.fetchone()
@@ -705,7 +705,7 @@ def update_score(user_id: int, correct: bool):
 # --- BOT HANDLERS ---
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
-    ensure_user(user.id, user.username or user.first_name)
+    ensure_user(connection, user.id, user.username or user.first_name)
 
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action=ChatAction.TYPING)
 
