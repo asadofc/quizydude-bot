@@ -678,15 +678,13 @@ for quiz_type in quizzes:
     reset_shuffled(quiz_type)
 
 # --- USER MANAGEMENT ---
-def ensure_user(connection, user.id, user.username or user.first_name):
+async def ensure_user(conn, user_id, username):
     try:
-        cursor.execute("SELECT * FROM users WHERE user_id=%s", (user_id,))
-        user = cursor.fetchone()
-        if not user:
-            cursor.execute("INSERT INTO users (user_id, username) VALUES (%s, %s)", (user_id, username))
-        connection.commit()
+        async with conn.transaction():
+            result = await conn.fetchrow("SELECT * FROM users WHERE user_id=$1", user_id)
+            if not result:
+                await conn.execute("INSERT INTO users (user_id, username) VALUES ($1, $2)", user_id, username)
     except Exception as e:
-        connection.rollback()
         print("Database error in ensure_user:", e)
 
 # In the start command, ensure you pass the connection
