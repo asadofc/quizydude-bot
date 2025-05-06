@@ -678,11 +678,16 @@ for quiz_type in quizzes:
     reset_shuffled(quiz_type)
 
 # --- USER MANAGEMENT ---
-def ensure_user(user_id: int, username: str):
-    cursor.execute("SELECT * FROM users WHERE user_id=%s", (user_id,))
-    if cursor.fetchone() is None:
-        cursor.execute("INSERT INTO users (user_id, username) VALUES (?, ?)", (user_id, username))
-        conn.commit()
+def ensure_user(user_id, username):
+    try:
+        cursor.execute("SELECT * FROM users WHERE user_id=%s", (user_id,))
+        user = cursor.fetchone()
+        if not user:
+            cursor.execute("INSERT INTO users (user_id, username) VALUES (%s, %s)", (user_id, username))
+        connection.commit()
+    except Exception as e:
+        connection.rollback()
+        print("Database error in ensure_user:", e)
 
 def update_score(user_id: int, correct: bool):
     if correct:
