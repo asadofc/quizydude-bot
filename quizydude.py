@@ -678,7 +678,10 @@ for quiz_type in quizzes:
     reset_shuffled(quiz_type)
 
 # --- USER MANAGEMENT ---
-async def ensure_user(conn, user_id, username):
+def ensure_user(connection, user_id, username):
+    # Your code goes here
+    # For example:
+    print(f"User ID: {user_id}, Username: {username}")
     try:
         async with conn.transaction():
             result = await conn.fetchrow("SELECT * FROM users WHERE user_id=$1", user_id)
