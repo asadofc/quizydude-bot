@@ -20,11 +20,11 @@ logger = logging.getLogger(__name__)
 
 # --- DATABASE SETUP ---
 conn = psycopg2.connect(
-    dbname=os.environ.get('PG_NAME'),
-    user=os.environ.get('PG_USER'),
-    password=os.environ.get('PG_PASSWORD'),
-    host=os.environ.get('PG_HOST'),
-    port=os.environ.get('PG_PORT', 5432)
+    host=os.environ.get("PGHOST"),
+    port=os.environ.get("PGPORT"),
+    database=os.environ.get("PGDATABASE"),
+    user=os.environ.get("PGUSER"),
+    password=os.environ.get("PGPASSWORD")
 )
 cursor = conn.cursor()
 
