@@ -1,10 +1,10 @@
 import os
 import logging
 import random
-import sqlite3
+import psycopg2
 import copy
 from telegram import (
-    Update, Poll, BotCommand
+    Update, Poll, BotCommand, InlineKeyboardButton, InlineKeyboardMarkup
 )
 from telegram.constants import ParseMode, ChatAction
 from telegram.ext import (
@@ -19,12 +19,18 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # --- DATABASE SETUP ---
-conn = sqlite3.connect('quizbot.db', check_same_thread=False)
+conn = psycopg2.connect(
+    dbname=os.environ.get('DB_NAME'),
+    user=os.environ.get('DB_USER'),
+    password=os.environ.get('DB_PASSWORD'),
+    host=os.environ.get('DB_HOST'),
+    port=os.environ.get('DB_PORT', 5432)
+)
 cursor = conn.cursor()
 
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS users (
-    user_id INTEGER PRIMARY KEY,
+    user_id BIGINT PRIMARY KEY,
     username TEXT,
     wins INTEGER DEFAULT 0,
     losses INTEGER DEFAULT 0
@@ -673,7 +679,7 @@ for quiz_type in quizzes:
 
 # --- USER MANAGEMENT ---
 def ensure_user(user_id: int, username: str):
-    cursor.execute("SELECT * FROM users WHERE user_id=?", (user_id,))
+    cursor.execute("SELECT * FROM users WHERE user_id=%s", (user_id,))
     if cursor.fetchone() is None:
         cursor.execute("INSERT INTO users (user_id, username) VALUES (?, ?)", (user_id, username))
         conn.commit()
@@ -691,27 +697,37 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ensure_user(user.id, user.username or user.first_name)
 
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action=ChatAction.TYPING)
-    
+
+    keyboard = InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("Updates", url="https://t.me/WorkGlows"),
+            InlineKeyboardButton("Support", url="https://t.me/TheCryptoElders")
+        ],
+        [
+            InlineKeyboardButton("Add Me To Your Group", url=f"https://t.me/quizydudebot?startgroup=true")
+        ]
+    ])
+
     msg = (
-    f"👋 Hey {user.mention_html()}!\n\n"
-    "✨ Welcome to the Ultimate Quiz Challenge Bot! ✨\n\n"
-    "Here, you can test your knowledge, have fun, flirt a little, or even go crazy with different types of quizzes!\n\n"
-    "🎯 Categories you can explore:\n"
-    " - 🔥 /xquiz — Steamy Sex Quiz\n"
-    " - ❤️ /hquiz — Horny Quiz\n"
-    " - 💋 /fquiz — Flirty Quiz\n"
-    " - 😂 /lolquiz — Funny Quiz\n"
-    " - 🤪 /cquiz — Crazy Quiz\n"
-    " - 📚 /squiz — Study Quiz\n"
-    " - 🎲 /aquiz — Random Mix\n\n"
-    "🏆 Correct answers will boost your rank on the leaderboard!\n"
-    "❌ Wrong answers? No worries, practice makes perfect!\n\n"
-    "⭐ Start now, challenge your friends, and become the Quiz Master!\n\n"
-    "👉 Use /help if you need guidance.\n\n"
-    "🎉 LET'S PLAY & HAVE FUN!"
+        f"👋 Hey {user.mention_html()}!\n\n"
+        "✨ Welcome to the Ultimate Quiz Challenge Bot! ✨\n\n"
+        "Here, you can test your knowledge, have fun, flirt a little, or even go crazy with different types of quizzes!\n\n"
+        "🎯 Categories you can explore:\n"
+        " - 🔥 /xquiz — Steamy Sex Quiz\n"
+        " - ❤️ /hquiz — Horny Quiz\n"
+        " - 💋 /fquiz — Flirty Quiz\n"
+        " - 😂 /lolquiz — Funny Quiz\n"
+        " - 🤪 /cquiz — Crazy Quiz\n"
+        " - 📚 /squiz — Study Quiz\n"
+        " - 🎲 /aquiz — Random Mix\n\n"
+        "🏆 Correct answers will boost your rank on the leaderboard!\n"
+        "❌ Wrong answers? No worries, practice makes perfect!\n\n"
+        "⭐ Start now, challenge your friends, and become the Quiz Master!\n\n"
+        "👉 Use /help if you need guidance.\n\n"
+        "🎉 LET'S PLAY & HAVE FUN!"
     )
 
-    await update.message.reply_html(msg)
+    await update.message.reply_html(msg, reply_markup=keyboard)
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     help_text = """
