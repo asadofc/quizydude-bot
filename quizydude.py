@@ -713,7 +713,7 @@ def update_score(user_id: int, correct: bool):
 # --- BOT HANDLERS ---
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
-    ensure_user(connection, user.id, user.username or user.first_name)
+    await ensure_user(user.id, user.username or user.first_name)
 
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action=ChatAction.TYPING)
 
