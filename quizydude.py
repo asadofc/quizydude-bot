@@ -680,23 +680,20 @@ for quiz_type in quizzes:
 # --- USER MANAGEMENT ---
 def ensure_user(connection, user_id, username):
     try:
-        # Create a cursor from the connection
-        cursor = connection.cursor()
-
         cursor.execute("SELECT * FROM users WHERE user_id=%s", (user_id,))
         user = cursor.fetchone()
         if not user:
             cursor.execute("INSERT INTO users (user_id, username) VALUES (%s, %s)", (user_id, username))
-
-        # Commit the transaction
         connection.commit()
-        
-        # Close the cursor after the operation
-        cursor.close()
     except Exception as e:
-        # Rollback the transaction in case of an error
         connection.rollback()
         print("Database error in ensure_user:", e)
+
+# In the start command, ensure you pass the connection
+def start(update, context):
+    user = update.message.from_user
+    ensure_user(connection, user.id, user.username or user.first_name)
+    # Continue with the rest of your code...
 
 def update_score(user_id: int, correct: bool):
     if correct:
