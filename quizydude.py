@@ -2,6 +2,7 @@ import os
 import logging
 import random
 import psycopg2
+import asyncio
 import copy
 from telegram import (
     Update, Poll, BotCommand, InlineKeyboardButton, InlineKeyboardMarkup
@@ -678,23 +679,29 @@ for quiz_type in quizzes:
     reset_shuffled(quiz_type)
 
 # --- USER MANAGEMENT ---
-def ensure_user(connection, user_id, username):
-    # Your code goes here
-    # For example:
-    print(f"User ID: {user_id}, Username: {username}")
-    try:
-        async with conn.transaction():
-            result = await conn.fetchrow("SELECT * FROM users WHERE user_id=$1", user_id)
-            if not result:
-                await conn.execute("INSERT INTO users (user_id, username) VALUES ($1, $2)", user_id, username)
-    except Exception as e:
-        print("Database error in ensure_user:", e)
+def ensure_user_sync(user_id, username):
+    conn = psycopg2.connect(
+        host=os.environ.get("PGHOST"),
+        port=os.environ.get("PGPORT"),
+        database=os.environ.get("PGDATABASE"),
+        user=os.environ.get("PGUSER"),
+        password=os.environ.get("PGPASSWORD")
+    )
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT * FROM users WHERE user_id=%s", (user_id,))
+    result = cursor.fetchone()
+    
+    if not result:
+        cursor.execute("INSERT INTO users (user_id, username) VALUES (%s, %s)", (user_id, username))
+    
+    conn.commit()
+    cursor.close()
+    conn.close()
 
-# In the start command, ensure you pass the connection
-def start(update, context):
-    user = update.message.from_user
-    ensure_user(connection, user.id, user.username or user.first_name)
-    # Continue with the rest of your code...
+# Asynchronous wrapper function
+async def ensure_user(user_id, username):
+    await asyncio.to_thread(ensure_user_sync, user_id, username)
 
 def update_score(user_id: int, correct: bool):
     if correct:
