@@ -853,7 +853,7 @@ async def show_statistics(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("No players yet!")
         return
 
-    text = "<b>🏆 Quizy Dude Leaderboard 🏆</b>\n\n"
+    text = "<b>🏆 Global Leaderboard 🏆</b>\n\n"
     for i, (uid, username, wins, losses) in enumerate(top_users, start=1):
         try:
             user = await context.bot.get_chat(uid)
