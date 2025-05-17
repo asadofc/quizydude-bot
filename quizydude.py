@@ -846,7 +846,7 @@ async def receive_poll_answer(update: Update, context: ContextTypes.DEFAULT_TYPE
 async def show_statistics(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action=ChatAction.TYPING)
 
-    cursor.execute("SELECT * FROM users ORDER BY wins DESC, losses ASC")
+    cursor.execute("SELECT * FROM users ORDER BY wins DESC, losses ASC LIMIT 10")
     top_users = cursor.fetchall()
 
     if not top_users:
