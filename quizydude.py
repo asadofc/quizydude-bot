@@ -633,7 +633,7 @@ quizzes = {
     ("Flirtiest way to respond to a 'hi'? 🙋", ["Hey you 😉", "Howdy", "Hi cutie", "Long time no flirt"], 2),
     ("Cutest accidental message excuse? 😅", ["Oops, meant for someone else 😏", "Or did I?", "Freudian slip?", "My bad... or not"], 1),
 	],
-    'lolquiz' = [
+    'lolquiz': = [
     ("What’s the most powerful way to win an argument? 🧠", ["Logic", "Screaming", "Walk away", "Pretend to cry 😢"], 3),
     ("Best way to survive a zombie apocalypse? 🧟", ["Hide", "Fight", "Befriend the zombies 🤝", "Cry in corner"], 2),
     ("Funniest reason to skip work? 🏖️", ["Lost my voice", "Alien abduction 👽", "Pet emotional support", "It's Tuesday"], 1),
@@ -830,7 +830,6 @@ quizzes = {
     ("Funniest reason to cry? 😭", ["Dropped my sandwich", "Too many tabs open", "My cereal smiled at me", "My sock betrayed me"], 3),
     ("Most awkward icebreaker? 🧊", ["Ever sneeze with your eyes open?", "What's your 17th favorite smell?", "Do you dream in fonts?", "Let’s talk about elbows"], 3),
     ("Best way to exit a boring meeting? 🚪", ["Smoke bomb!", "Cough 'bye' and vanish", "Pretend to freeze", "Slide away slowly"], 2),
-    
 	],
     'cquiz': [
     ("Which streamer is famous for yelling “RARRR!” during intense moments? 🎮", ["MrBeast", "IShowSpeed", "Kai Cenat", "CarryMinati"], 1),
@@ -1220,7 +1219,7 @@ quizzes = {
     ("Why is every Ohio meme blurry? 📸🌫️", ["Filmed on a toaster", "NPC effect", "Unstable reality", "Camera was levitating"], 2),
     ("What’s the best strategy in meme warfare? ⚔️😂", ["Comment before watching", "Be unhinged", "Post and ghost", "Win by confusion"], 3),
 	],
-    'squiz' = [
+    'squiz': = [
     ("What is the chemical symbol for water? 💧", ["H2O", "O2", "CO2", "NaCl"], 0),
     ("Which planet is closest to the Sun? ☀️", ["Venus", "Mercury", "Mars", "Earth"], 1),
     ("Who wrote 'Romeo and Juliet'? 🎭", ["Charles Dickens", "Jane Austen", "William Shakespeare", "Mark Twain"], 2),
