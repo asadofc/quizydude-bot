@@ -208,9 +208,13 @@ async def show_statistics(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action=ChatAction.TYPING)
     cursor.execute("SELECT * FROM users ORDER BY wins DESC, losses ASC LIMIT 10")
     top_users = cursor.fetchall()
+    
     if not top_users:
-        await update.message.reply_text("No players yet!")
+        msg = await update.message.reply_text("No players yet!")
+        await asyncio.sleep(60)
+        await msg.delete()
         return
+
     text = "<b>🏆 Quiz Global Leaderboard 🏆</b>\n\n"
     for i, (uid, username, wins, losses) in enumerate(top_users, start=1):
         try:
@@ -220,7 +224,10 @@ async def show_statistics(update: Update, context: ContextTypes.DEFAULT_TYPE):
             mention = f"<i>{username or 'Unknown'}</i>"
         icon = "🥇" if i == 1 else "🥈" if i == 2 else "🥉" if i == 3 else f"{i}"
         text += f"{icon} {mention} — W: {wins} & L: {losses}\n"
-    await update.message.reply_html(text)
+
+    msg = await update.message.reply_html(text)
+    await asyncio.sleep(60)
+    await msg.delete()
 
 # --- MAIN ---
 def main():
