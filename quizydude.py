@@ -20,8 +20,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # --- DATABASE SETUP using single URL ---
-dsn = os.environ["DATABASE_URL"]
-conn = psycopg2.connect(dsn, sslmode="require")  # sslmode optional
+DATABASE_URL = os.environ["DATABASE_URL"]
+conn = psycopg2.connect(DATABASE_URL, sslmode="require")
 cursor = conn.cursor()
 
 cursor.execute("""
