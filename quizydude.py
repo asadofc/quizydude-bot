@@ -436,7 +436,7 @@ quizzes = {
     ("Which time of night feels the sexiest? 🌃", ["10 PM", "Midnight", "3 AM", "5 AM"], 1),
     ("What action gives away bedroom confidence? 😮‍💨", ["Slow walking", "Direct eye contact", "Soft touch", "Open shirt"], 1),
 	],
-    'fquiz': = [
+    'fquiz': [
     ("What's the cutest way to say good morning? ☀️", ["Good morning", "Hey you", "Morning superstar", "Hello"], 2),
     ("Best emoji to break the ice? 😉", ["😊", "😎", "😉", "😴"], 2),
     ("Most flirty way to ask someone out? 💌", ["Wanna hang?", "Free tonight?", "Coffee date?", "Sup?"], 2),
@@ -633,7 +633,7 @@ quizzes = {
     ("Flirtiest way to respond to a 'hi'? 🙋", ["Hey you 😉", "Howdy", "Hi cutie", "Long time no flirt"], 2),
     ("Cutest accidental message excuse? 😅", ["Oops, meant for someone else 😏", "Or did I?", "Freudian slip?", "My bad... or not"], 1),
 	],
-    'lolquiz': = [
+    'lolquiz': [
     ("What’s the most powerful way to win an argument? 🧠", ["Logic", "Screaming", "Walk away", "Pretend to cry 😢"], 3),
     ("Best way to survive a zombie apocalypse? 🧟", ["Hide", "Fight", "Befriend the zombies 🤝", "Cry in corner"], 2),
     ("Funniest reason to skip work? 🏖️", ["Lost my voice", "Alien abduction 👽", "Pet emotional support", "It's Tuesday"], 1),
@@ -1219,7 +1219,7 @@ quizzes = {
     ("Why is every Ohio meme blurry? 📸🌫️", ["Filmed on a toaster", "NPC effect", "Unstable reality", "Camera was levitating"], 2),
     ("What’s the best strategy in meme warfare? ⚔️😂", ["Comment before watching", "Be unhinged", "Post and ghost", "Win by confusion"], 3),
 	],
-    'squiz': = [
+    'squiz': [
     ("What is the chemical symbol for water? 💧", ["H2O", "O2", "CO2", "NaCl"], 0),
     ("Which planet is closest to the Sun? ☀️", ["Venus", "Mercury", "Mars", "Earth"], 1),
     ("Who wrote 'Romeo and Juliet'? 🎭", ["Charles Dickens", "Jane Austen", "William Shakespeare", "Mark Twain"], 2),
