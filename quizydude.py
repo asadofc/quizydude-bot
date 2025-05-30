@@ -1220,7 +1220,7 @@ quizzes = {
     ("Why is every Ohio meme blurry? 📸🌫️", ["Filmed on a toaster", "NPC effect", "Unstable reality", "Camera was levitating"], 2),
     ("What’s the best strategy in meme warfare? ⚔️😂", ["Comment before watching", "Be unhinged", "Post and ghost", "Win by confusion"], 3),
 	],
-    'squiz'' = [
+    'squiz' = [
     ("What is the chemical symbol for water? 💧", ["H2O", "O2", "CO2", "NaCl"], 0),
     ("Which planet is closest to the Sun? ☀️", ["Venus", "Mercury", "Mars", "Earth"], 1),
     ("Who wrote 'Romeo and Juliet'? 🎭", ["Charles Dickens", "Jane Austen", "William Shakespeare", "Mark Twain"], 2),
