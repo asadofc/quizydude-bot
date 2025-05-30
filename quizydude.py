@@ -19,24 +19,19 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# --- DATABASE SETUP ---
-conn = psycopg2.connect(
-    host=os.environ.get("PGHOST"),
-    port=os.environ.get("PGPORT"),
-    database=os.environ.get("PGDATABASE"),
-    user=os.environ.get("PGUSER"),
-    password=os.environ.get("PGPASSWORD")
-)
+# --- DATABASE SETUP using single URL ---
+dsn = os.environ["DATABASE_URL"]
+conn = psycopg2.connect(dsn, sslmode="require")  # sslmode optional
 cursor = conn.cursor()
 
-cursor.execute('''
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS users (
     user_id BIGINT PRIMARY KEY,
     username TEXT,
     wins INTEGER DEFAULT 0,
     losses INTEGER DEFAULT 0
 )
-''')
+""")
 conn.commit()
 
 # --- QUIZ QUESTIONS SETUP ---
