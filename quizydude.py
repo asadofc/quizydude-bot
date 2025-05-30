@@ -436,7 +436,7 @@ quizzes = {
     ("Which time of night feels the sexiest? 🌃", ["10 PM", "Midnight", "3 AM", "5 AM"], 1),
     ("What action gives away bedroom confidence? 😮‍💨", ["Slow walking", "Direct eye contact", "Soft touch", "Open shirt"], 1),
 	],
-    'fquiz' = [
+    'fquiz': = [
     ("What's the cutest way to say good morning? ☀️", ["Good morning", "Hey you", "Morning superstar", "Hello"], 2),
     ("Best emoji to break the ice? 😉", ["😊", "😎", "😉", "😴"], 2),
     ("Most flirty way to ask someone out? 💌", ["Wanna hang?", "Free tonight?", "Coffee date?", "Sup?"], 2),
