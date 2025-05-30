@@ -633,7 +633,7 @@ quizzes = {
     ("Flirtiest way to respond to a 'hi'? 🙋", ["Hey you 😉", "Howdy", "Hi cutie", "Long time no flirt"], 2),
     ("Cutest accidental message excuse? 😅", ["Oops, meant for someone else 😏", "Or did I?", "Freudian slip?", "My bad... or not"], 1),
 	],
-    'lolquiz'' = [
+    'lolquiz' = [
     ("What’s the most powerful way to win an argument? 🧠", ["Logic", "Screaming", "Walk away", "Pretend to cry 😢"], 3),
     ("Best way to survive a zombie apocalypse? 🧟", ["Hide", "Fight", "Befriend the zombies 🤝", "Cry in corner"], 2),
     ("Funniest reason to skip work? 🏖️", ["Lost my voice", "Alien abduction 👽", "Pet emotional support", "It's Tuesday"], 1),
