@@ -168,14 +168,15 @@ async def send_quiz(update: Update, context: ContextTypes.DEFAULT_TYPE, quiz_typ
 
     await context.bot.send_chat_action(chat_id=update.effective_chat.id, action=ChatAction.TYPING)
     msg = await context.bot.send_poll(
-        chat_id=update.effective_chat.id,
-        question=q_text,
-        options=options,
-        type=Poll.QUIZ,
-        correct_option_id=correct_id,
-        is_anonymous=False,
-        allows_multiple_answers=False
-    )
+    chat_id=update.effective_chat.id,
+    question=q_text,
+    options=options,
+    type=Poll.QUIZ,
+    correct_option_id=correct_id,
+    is_anonymous=False,
+    allows_multiple_answers=False,
+    open_period=60  # ⏱️ Add this line for 60 seconds timer
+)
     payload = {
         msg.poll.id: {
             "correct_option_id": correct_id,
