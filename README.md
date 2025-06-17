@@ -41,7 +41,7 @@ Welcome to **Quizy Dude**, a playful yet competitive quiz bot on Telegram. Desig
 
 - **Language:** Python  
 - **Framework:** [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot)  
-- **Database:** PostgreSQL  
+- **Database:** SQlite3  
 - **Hosting:** Render  
 
 ---
